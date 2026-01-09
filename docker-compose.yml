@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: groomer-mysql
+    environment:
+      MYSQL_DATABASE: groomer_db
+      MYSQL_USER: groomer
+      MYSQL_PASSWORD: groomer
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - groomer_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: .
+    container_name: groomer-api
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 8080
+      DB_URL: jdbc:mysql://db:3306/groomer_db?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=America/Lima
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET: y4UItvZV4fok5WVce3/4r5pmaqCVc6hkROn63Y7BTSOB6PwTRwGPU90IrvT2x2MuoC55q2/jt2jlz8i/+He5vg==
+      JWT_TTL_MINUTES: 480
+      CORS_ORIGINS: http://localhost:3000
+      UPLOAD_DIR: /data/uploads
+    ports:
+      - "8080:8080"
+    volumes:
+      - groomer_uploads:/data/uploads
+
+volumes:
+  groomer_mysql_data:
+  groomer_uploads:

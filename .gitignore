@@ -1,0 +1,32 @@
+# ---- Maven / Java ----
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# ---- IDEs ----
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Git ----
+*.orig
+
+# ---- Local env / secrets ----
+.env
+.env.*
+application-prod.properties
+application-prod.yml
+
+# ---- Uploads (no versionar archivos subidos) ----
+uploads/
+data/

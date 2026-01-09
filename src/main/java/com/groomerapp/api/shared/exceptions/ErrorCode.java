@@ -1,0 +1,66 @@
+package com.groomerapp.api.shared.exceptions;
+
+import org.springframework.http.HttpStatus;
+
+public enum ErrorCode {
+
+    VALIDATION_FAILED(HttpStatus.BAD_REQUEST),
+    NOT_FOUND(HttpStatus.NOT_FOUND),
+
+    // ✅ Auth / Security
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED),
+    FORBIDDEN(HttpStatus.FORBIDDEN),
+
+    ZONE_ALREADY_EXISTS(HttpStatus.CONFLICT),
+    ZONE_NAME_REQUIRED(HttpStatus.BAD_REQUEST),
+
+    TREATMENT_TYPE_ALREADY_EXISTS(HttpStatus.CONFLICT),
+    TREATMENT_TYPE_NAME_REQUIRED(HttpStatus.BAD_REQUEST),
+
+    MEDICINE_ALREADY_EXISTS(HttpStatus.CONFLICT),
+    MEDICINE_NAME_REQUIRED(HttpStatus.BAD_REQUEST),
+
+    CLIENT_NAME_REQUIRED(HttpStatus.BAD_REQUEST),
+    CLIENT_ZONE_INVALID(HttpStatus.BAD_REQUEST),
+    CLIENT_PHONE_REQUIRED(HttpStatus.BAD_REQUEST),
+    CLIENT_PHONE_NOT_FOUND(HttpStatus.NOT_FOUND),
+
+    UPLOAD_FILE_REQUIRED(HttpStatus.BAD_REQUEST),
+    UPLOAD_INVALID_TYPE(HttpStatus.BAD_REQUEST),
+    UPLOAD_FAILED(HttpStatus.INTERNAL_SERVER_ERROR),
+
+    PET_NAME_REQUIRED(HttpStatus.BAD_REQUEST),
+    PET_CLIENT_REQUIRED(HttpStatus.BAD_REQUEST),
+    PET_PHOTO_URL_REQUIRED(HttpStatus.BAD_REQUEST),
+
+    APPOINTMENT_TIME_INVALID(HttpStatus.BAD_REQUEST),
+    APPOINTMENT_REASON_REQUIRED(HttpStatus.BAD_REQUEST),
+    APPOINTMENT_CANCEL_CHARGE_INVALID(HttpStatus.BAD_REQUEST),
+
+    VISIT_DATE_REQUIRED(HttpStatus.BAD_REQUEST),
+    VISIT_ITEMS_REQUIRED(HttpStatus.BAD_REQUEST),
+    VISIT_TOTAL_INVALID(HttpStatus.BAD_REQUEST),
+
+    VISIT_ITEM_PRICE_INVALID(HttpStatus.BAD_REQUEST),
+    VISIT_TREATMENT_DETAIL_REQUIRED(HttpStatus.BAD_REQUEST),
+
+    PAYMENT_INVALID(HttpStatus.BAD_REQUEST),
+
+
+    OVERLAP_CONFIRMATION_REQUIRED(HttpStatus.CONFLICT),
+
+    DATA_INTEGRITY_VIOLATION(HttpStatus.CONFLICT),
+    INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR);
+
+
+
+    private final HttpStatus httpStatus;
+
+    ErrorCode(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+
+    public HttpStatus httpStatus() {
+        return httpStatus;
+    }
+}
