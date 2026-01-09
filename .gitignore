@@ -28,5 +28,5 @@ application-prod.properties
 application-prod.yml
 
 # ---- Uploads (no versionar archivos subidos) ----
-uploads/
+/uploads/
 /data/
